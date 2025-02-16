@@ -1,0 +1,7 @@
+export const order_status={
+    PLACED: 'PLACED',
+    INITIATED: 'INITIATED',
+    CONFIRMED: 'CONFIRMED',
+    COMPLETED: 'COMPLETED',
+    CANCELLED: 'CANCELLED',
+}

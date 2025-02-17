@@ -67,13 +67,10 @@ const CashOrderCard = ({ order }: IndividualOrderType) => {
             Confirm
           </button>
           <button
-            className="bg-red-500 text-white text-sm p-[2.5px]  rounded-md"
+            className="bg-red-500 text-white text-sm p-[2.5px] px-1 rounded-md"
             onClick={handleCancelOrder}
           >
             Cancel
-          </button>
-          <button className="bg-black text-white  text-sm p-[2.5px] rounded-md">
-            Generate Bill
           </button>
         </div>
       </div>

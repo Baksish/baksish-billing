@@ -33,7 +33,7 @@ export const generatePrintContent = (order: orderType) => {
             .item {
               margin-bottom: 5px;
               font-size: 14px;
-              white-space: nowrap;
+              white-space: normal;
               overflow: hidden;
               text-overflow: ellipsis;
             }
@@ -56,11 +56,12 @@ export const generatePrintContent = (order: orderType) => {
             <p><b>Token: #${order.order_number}</b></p>
             <p>ID: ${order.order_id}</p>
             <p>Customer: ${order.customer_name}</p>
+            <p>Phone: ${order.customer_phone}</p>
           </div>
           <div class="order-items">
             ${order.order_item.map((item: orderItemType) => `
               <div class="item">
-                • ${item.menu_item.food_item_id.food_item_name} 
+                • ${item.name} 
                   (${ItemSize[item.size as keyof typeof ItemSize]}) 
                   x${item.quantity}
               </div>

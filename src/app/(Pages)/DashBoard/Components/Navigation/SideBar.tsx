@@ -38,7 +38,7 @@ const SideBar = () => {
         </Tooltip>
       ))}
 
-      <div className="-rotate-90 text-xl w-fit text-white bg-orange-500 px-4 py-1 rounded-br-xl absolute bottom-[29px]  -left-[33px] ">
+      <div className="-rotate-90 text-2xl w-fit text-white bg-orange-500 px-8 py-4 rounded-br-xl absolute bottom-[29px]  -left-[42px] ">
         Baksish
       </div>
     </div>

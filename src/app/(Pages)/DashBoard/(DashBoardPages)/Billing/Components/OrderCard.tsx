@@ -44,7 +44,6 @@ const OrderCard = ({ order }: IndividualOrderType) => {
       const whatsappUrl = `https://wa.me/91${order.customer_phone}?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
   };
-
   return (
     <>
       {/* Main Order Card */}
@@ -86,7 +85,7 @@ const OrderCard = ({ order }: IndividualOrderType) => {
                   ₹ {order.round_off_amount}
                 </span>
               </p>
-              <button className="bg-black hover:bg-green-600 transition-colors duration-200 w-full text-white py-2 px-4 rounded-md">
+              <button className="bg-black hover:bg-slate-500 transition-colors duration-200 w-full text-white py-2 px-4 rounded-md">
                 Complete
               </button>
             </div>
@@ -122,7 +121,7 @@ const OrderCard = ({ order }: IndividualOrderType) => {
                 {order.order_item.map((item: orderItemType) => (
                   <li key={item._id} className="flex justify-between items-center  space-x-4 space-y-2 text-lg">
                     <p>
-                      {capitalize(item.menu_item.food_item_id.food_item_name)}&nbsp;<span className="text-base text-gray-600">({ItemSize[item.size as keyof typeof ItemSize]})</span>
+                      {capitalize(item.name || "")}&nbsp;<span className="text-base text-gray-600">({ItemSize[item.size as keyof typeof ItemSize]})</span>
                     </p>
 
                     <span className="mr-10 flex justify-between space-x-8">

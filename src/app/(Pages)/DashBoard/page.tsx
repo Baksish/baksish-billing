@@ -25,7 +25,7 @@ const DashBoardpage: React.FC = () => {
 
   return (
     <div>
-      <div className="ml-4 text-3xl font-medium text-gray-800">
+      <div className="mt-4 px-4 ml-4 text-3xl font-medium text-gray-800">
           Dashboard
       </div>
       {/* <h1 className="text-2xl font-bold mb-4">Welcome to the Dashboard</h1>

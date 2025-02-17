@@ -16,14 +16,14 @@ const UserNavigation:React.FC = () => {
   };
   return (
     <div>
-      <div onMouseEnter={handleToggleOptions} className="absolute max-w-[190px] min-w-20 cursor-pointer w-fit flex justify-center items-center right-10 top-2 text-white text-sm p-1 rounded-full px-3 bg-zinc-700">
+      <div onMouseEnter={handleToggleOptions} className="absolute max-w-[190px] min-w-20 cursor-pointer w-fit flex justify-center items-center right-10 top-5 text-white text-sm p-1 rounded-full px-3 bg-zinc-700">
           <span className="truncate">{user?.name}</span>
           <span><ExpandMoreIcon className="size-6"/></span>
       </div>
 
 
       {showOptions && <section onMouseLeave={handleToggleOptions} className="relative transition-all ">
-        <ul className="bg-zinc-300 rounded p-2 z-20 text-sm absolute right-10 top-11 min-w-32">
+        <ul className="bg-zinc-300 rounded p-2 z-20 text-sm absolute right-10 top-14 min-w-32">
           <li className="cursor-pointer hover:font-semibold transition-all duration-100">View Profile</li>
           <li className="cursor-pointer hover:font-semibold transition-all duration-100" onClick={handleLogout}>Logout</li>
         </ul>

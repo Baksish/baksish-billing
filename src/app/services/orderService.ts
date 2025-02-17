@@ -83,7 +83,7 @@ export const useFetchSingleOrder = (order_id: string) => {
       staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
       retry: 3, // Retry up to 3 times on failure
       onError: (error: AxiosError) => {
-        toast.error("Error fetching orders:");
+        console.log("Error fetching orders:", error);
       },
     }
   );
@@ -105,7 +105,7 @@ export const useFetchCompletedSingleOrder = (order_id: string) => {
       staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
       retry: 3, // Retry up to 3 times on failure
       onError: (error: AxiosError) => {
-        toast.error("Error fetching orders:");
+        console.log("Error fetching orders:");
       },
     }
   );

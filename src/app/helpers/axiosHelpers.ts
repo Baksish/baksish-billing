@@ -55,6 +55,7 @@ export const billingAxiosInstancePut = async (endpoint: string, payload: any) =>
       return response.data;
     } catch (error: any) {
       toast.error("Error updating data:",error);
+      
     }
 };
 

@@ -94,7 +94,7 @@ const MenuItemModal = ({
   return (
     <>
       {isOpenEdit && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-10 hover:cursor-default">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hover:cursor-default">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between">
               <h2 className="text-2xl font-bold mb-2">Menu Item Details</h2>

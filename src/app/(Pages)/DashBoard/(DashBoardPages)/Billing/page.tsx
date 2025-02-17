@@ -7,6 +7,7 @@ import { orderType } from "@/app/Types/Type";
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
 import LoaderComponent from "@/app/Components/Loader/LoaderComponent";
+import toast from "react-hot-toast";
 
 
 
@@ -46,6 +47,7 @@ const BillingPage = () => {
           };
         });
       }, 500); // 500ms delay
+      toast.success("New order received");
     });
 
     // Listen for order updates
@@ -100,11 +102,11 @@ const BillingPage = () => {
 
   return (
     <div className="bg-[#F7FBFF] max-h-[100vh] overflow-y-auto ">
-      <div className="flex justify-between items-center px-4 mb-6">
+      <div className="flex justify-between items-center mt-4 ml-4 px-4 mb-6">
         <h1 className="text-3xl">Billing</h1>
       </div>
 
-      <section className=" flex justify-between gap-2 ">
+      <section className=" flex justify-between gap-2 mb-8">
         <div className="flex-[70]">
           <CurrentOrdersSection orders={confirmedOrders} />
         </div>

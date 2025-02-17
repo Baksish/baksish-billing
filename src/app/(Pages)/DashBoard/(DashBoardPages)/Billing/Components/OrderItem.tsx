@@ -8,7 +8,7 @@ function OrderItem({item}:IndividualMenuItemType) {
   return (
     <div className="flex text-md justify-between items-center ">
       <div>
-        <span>{capitalize(item?.menu_item?.food_item_id?.food_item_name||"")}</span>
+        <span className="text-sm">{capitalize(item?.name||"")}</span>
         <span>&nbsp;&nbsp;&nbsp;x {item?.quantity}</span>
       </div>
     </div>

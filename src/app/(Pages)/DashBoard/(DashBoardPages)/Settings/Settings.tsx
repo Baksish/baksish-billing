@@ -155,7 +155,6 @@ const Settings = () => {
       isVegOnly: data.isVegOnly,
       isCashOnly: data.isCashOnly
     }
-    console.log(restaurant_id);
     try {
       await updateRestaurantDetails({
         restaurant_id: restaurant_id,

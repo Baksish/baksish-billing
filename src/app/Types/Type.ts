@@ -35,6 +35,7 @@ export type orderItemType={
   quantity:string,
   price?:string,
   size?:string,
+  name?:string,
   _id:string,
   _v:Number,
 }

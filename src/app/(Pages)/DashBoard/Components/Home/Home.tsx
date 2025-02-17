@@ -85,9 +85,9 @@ const DashBoardPage: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <InfoCard title="Total Menus" value={menusData?.menuCount || 0} />
+        <InfoCard title="Total Menu Items" value={menusData?.menuCount || 0} />
         <InfoCard title="Total Orders" value={ordersData?.totalOrders || 0} />
-        <InfoCard title="Total Customers Served" value={customersData?.totalCustomers || 0} />
+        <InfoCard title="Customers Served" value={customersData?.totalCustomers || 0} />
         <InfoCard title="Total Revenue" value={`₹ ${revenueData?.averageOrderAmount || 0}`} />
       </div>
 
@@ -113,7 +113,7 @@ const InfoCard: React.FC<{ title: string; value: string | number }> = ({ title, 
       <h2 className="text-3xl font-bold text-white font-sans">
         {value}
       </h2>
-      <div className="w-full h-1 bg-gradient-to-r from-orange-500 to-orange-300 rounded-full mt-2"></div>
+      
     </div>
   </div>
 );

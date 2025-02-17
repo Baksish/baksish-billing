@@ -16,7 +16,7 @@ const CurrentOrdersSection = ({orders}:ordersMappedType) => {
     <>
       <div className="flex justify-between items-center  px-8 pb-4">
         <h2 className="text-2xl font-semibold ">Current Orders</h2>
-        <button className="bg-black hover:bg-green-600 transition-colors duration-200 text-white py-2 px-4 rounded-md" onClick={directToCustomerPage}>
+        <button className="bg-black hover:bg-slate-500 transition-colors duration-200 text-white py-2 px-4 rounded-md" onClick={directToCustomerPage}>
           Create a new order
         </button>
       </div>

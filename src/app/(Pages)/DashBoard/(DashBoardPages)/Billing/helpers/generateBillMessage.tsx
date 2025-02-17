@@ -12,7 +12,7 @@ const generateBillMessage = async(order:orderType) => {
       `---------------------------\n\n`;
 
     const items = order.order_item.map(item => 
-      `${capitalize(item.menu_item.food_item_id.food_item_name)} ` +
+      `${capitalize(item.name || "")} ` +
       `(${ItemSize[item.size as keyof typeof ItemSize]})\n` +
       `${item.quantity} x ₹${item.price} = ₹${parseFloat(item.price || "0") * parseFloat(item.quantity || "0")}`
     ).join('\n\n');

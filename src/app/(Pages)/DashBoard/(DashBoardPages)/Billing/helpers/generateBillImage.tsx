@@ -30,7 +30,7 @@ const generateBillImage = async (order:orderType) => {
         ${order?.order_item?.map(item => `
           <div style="display: flex; justify-content: space-between; margin: 10px 0; font-size: 14px;">
             <div style="flex: 2;">
-              <p style="margin: 0; font-weight: bold;">${capitalize(item?.menu_item?.food_item_id?.food_item_name)}</p>
+              <p style="margin: 0; font-weight: bold;">${capitalize(item?.name || "")}</p>
               <p style="margin: 0; color: #666; font-size: 12px;">${ItemSize[item?.size as keyof typeof ItemSize]}</p>
             </div>
             <div style="flex: 1; text-align: center;">

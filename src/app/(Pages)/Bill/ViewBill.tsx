@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import generateBillImage from '../DashBoard/(DashBoardPages)/Billing/helpers/generateBillImage';
 import DownloadIcon from '@mui/icons-material/Download';
 import { useFetchCompletedSingleOrder, useFetchSingleOrder } from '@/app/services/orderService';
@@ -10,9 +10,9 @@ import Image from 'next/image';
 const ViewBill = () => {
   const searchParams = useSearchParams();
   const billId = searchParams.get('id');
-  const {data: completedOrder, isLoading: completedOrderLoading} = useFetchCompletedSingleOrder(billId!);
-  const { data: order, isLoading: orderLoading } = useFetchSingleOrder(billId!);
-
+  const {data: completedOrder, isLoading: completedOrderLoading, isError: completedOrderError} = useFetchCompletedSingleOrder(billId!);
+  const { data: order, isLoading: orderLoading, isError: orderError } = useFetchSingleOrder(billId!);
+  const router = useRouter();
   const [billUrl, setBillUrl] = useState<string | null>(null);
   useEffect(() => {
     const generateBill = async () => {
@@ -32,6 +32,17 @@ const ViewBill = () => {
     link.href = billUrl!;
     link.download = `Bill-${order?.order_number}.png`;
     document.body.appendChild(link);
+  }
+  if(orderLoading && completedOrderLoading){
+    return <LoaderComponent/>
+  }
+  if(orderError && completedOrderError){
+    return <div>
+      <div className='flex justify-center items-center'>
+        <p>Error fetching order</p>
+        <button className='bg-slate-700 text-white px-4 py-2 rounded-md hover:bg-slate-600 transition-colors' onClick={() => router.back()}>Go Back</button>
+      </div>
+    </div>
   }
   return (
     <div className='my-10'>

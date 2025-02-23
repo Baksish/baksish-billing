@@ -8,7 +8,7 @@ const CurrentOrdersSection = ({orders}:ordersMappedType) => {
     if(window.localStorage!=undefined){
       const user = JSON.parse(localStorage.getItem('user') || '{}');
       if(user?.restaurant_details){
-        window.open(`${process.env.NEXT_PUBLIC_CUSTOMER_PAGE_URL}?id=${user.restaurant_details._id}`, '_blank');
+        window.open(`${process.env.NEXT_PUBLIC_CUSTOMER_PAGE_URL}?id=${user.restaurant_details._id}&origin=restaurant`, '_blank');
       }
     }
   }
@@ -21,7 +21,7 @@ const CurrentOrdersSection = ({orders}:ordersMappedType) => {
         </button>
       </div>
       <aside className="w-[100%] max-h-[80vh] overflow-y-auto px-8 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {orders?.map((order: orderType) => (
         <div key={order._id}>
           <OrderCard order={order} />

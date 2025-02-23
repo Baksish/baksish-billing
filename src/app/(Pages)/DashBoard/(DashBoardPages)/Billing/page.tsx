@@ -14,8 +14,11 @@ import toast from "react-hot-toast";
 const BillingPage = () => {
   const { data: initialOrders, isLoading, error } = useFetchAllOrders();
   const [orders, setOrders] = useState<{ orders: orderType[] } | null>(null);
-  
+  const [noOrdersFound, setnoOrdersFound] = useState(false)
   useEffect(() => {
+    if(!initialOrders){
+      setnoOrdersFound(true);
+    }
     if (initialOrders) {
       setOrders(initialOrders);
     }
@@ -78,6 +81,18 @@ const BillingPage = () => {
     };
   }, []);
 
+  if(isLoading){
+    return <div><LoaderComponent/></div>;
+  }
+
+  if(error){
+    return <p>Error loading orders</p>
+  }
+
+  if(noOrdersFound){
+    return <div className="flex justify-center items-center text-xl mt-10">No orders found</div>
+  }
+
   const filterOrdersByStatus = (orders: orderType[], status: string) => {
     if (!orders || orders.length === 0) return [];
     return orders
@@ -94,23 +109,19 @@ const BillingPage = () => {
     : [];
 
   if (isLoading) return <div><LoaderComponent/></div>;
-  if (error) return <p>Error loading orders: {error.message}</p>;
-
-  if (!orders?.orders?.length) {
-    return <div><LoaderComponent/></div>;
-  }
+  if (error) return <p>Error loading orders</p>;
 
   return (
-    <div className="bg-[#F7FBFF] max-h-[100vh] overflow-y-auto ">
+    <div className="bg-[#F7FBFF] max-h-[100vh] overflow-y-auto overflow-x-auto">
       <div className="flex justify-between items-center mt-4 ml-4 px-4 mb-6">
         <h1 className="text-3xl">Billing</h1>
       </div>
 
       <section className=" flex justify-between gap-2 mb-8">
-        <div className="flex-[70]">
+        <div className=" flex-[50] lg:flex-[70]">
           <CurrentOrdersSection orders={confirmedOrders} />
         </div>
-        <div className="flex-[30] max-h-[85vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+        <div className="flex-[50] lg:flex-[30] max-h-[85vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
           <IndividualOrderDetails orders={placedOrders} />
         </div>
       </section>

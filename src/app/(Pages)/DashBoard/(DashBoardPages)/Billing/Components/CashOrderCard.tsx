@@ -44,7 +44,6 @@ const CashOrderCard = ({ order }: IndividualOrderType) => {
       </p>
       <div className="flex justify-between items-center mt-6">
         <div className="">
-          <p className="text-gray-700 font-semibold text-base">Order Amount</p>
           <p className="text-base flex justify-start items-center font-bold text-gray-900">
             <svg
               fill="#000000"

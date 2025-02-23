@@ -16,6 +16,7 @@ import { order_status } from "@/app/Constants/constants";
 import { useQueryClient } from "react-query";
 import generateBillMessage from "../helpers/generateBillMessage";
 import { generatePrintContent } from "../helpers/generateKitchenBill";
+import { generatePrintContent_TeXt } from "../helpers/generateKitchenBill";
 
 const OrderCard = ({ order }: IndividualOrderType) => {
   const queryClient = useQueryClient();
@@ -32,6 +33,59 @@ const OrderCard = ({ order }: IndividualOrderType) => {
     });
     setModalOpen(false);
   };
+
+
+
+  let printerDevice: any = null;
+  let printerServer: any = null;
+  
+
+/**
+ * Connects to the MPT-II Bluetooth printer using Chrome's Web Bluetooth API.
+ */
+const connectPrinter = async (): Promise<void> => {
+    try {
+        printerDevice = await (navigator as any)?.bluetooth?.requestDevice({
+            acceptAllDevices: true,
+            optionalServices: ['00001101-0000-1000-8000-00805f9b34fb'] // Standard SPP UUID for serial printers
+        });
+
+        if (!printerDevice.gatt) {
+            throw new Error("GATT server not found on the device");
+        }
+
+        printerServer = await printerDevice.gatt.connect();
+        console.log('✅ Connected to printer:', printerDevice.name);
+    } catch (error) {
+        console.log('❌ Bluetooth Connection Failed:', error);
+    }
+};
+
+/**
+ * Sends KOT bill data to the printer over Bluetooth.
+ */
+const handlePrint_new = async () => {
+
+  connectPrinter();
+    if (!printerDevice || !printerServer) {
+        console.log("❌ Prz`inter not connected! Call connectPrinter() first.");
+        return;
+    }
+
+    try {
+        const service = await printerServer.getPrimaryService('00001101-0000-1000-8000-00805f9b34fb');
+        const characteristic = await service.getCharacteristic('00002a56-0000-1000-8000-00805f9b34fb'); // Adjust based on printer's documentation
+
+        const printData = generatePrintContent(order);
+        const encoder = new TextEncoder();
+        const dataArray = encoder.encode(printData);
+
+        await characteristic.writeValue(dataArray);
+        console.log("✅ Print request sent successfully!");
+    } catch (error) {
+        console.log("❌ Printing failed:", error);
+    }
+};
 
   const handlePrint = () => {
     const printWindow = window.open("", "", "width=400,height=600");
@@ -66,7 +120,7 @@ const OrderCard = ({ order }: IndividualOrderType) => {
           </p>
         </div>
         <h3 className="font-semibold">Order Summary</h3>
-        <div className="text-base mt-2 h-2 scroll-y-auto w-full">
+        <div className="text-base mt-2 h-20 hide_scrollbar overflow-y-auto w-full">
           {order.order_item.map((item: orderItemType) => (
             <div
               key={item._id || Math.random()}
@@ -158,7 +212,7 @@ const OrderCard = ({ order }: IndividualOrderType) => {
                 </div>
                 <div
                   className="bg-black text-white h-fit py-2 px-4 rounded-lg cursor-pointer"
-                  onClick={handlePrint}
+                  onClick={handlePrint_new}
                 >
                   <PrintIcon />
                 </div>

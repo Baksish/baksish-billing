@@ -79,3 +79,24 @@ export const generatePrintContent = (order: orderType) => {
       </html>
     `;
   };
+
+
+  
+
+  export const generatePrintContent_TeXt = (order: orderType): string => {
+    return `
+        KITCHEN ORDER
+        ---------------------------
+        Token: #${order.order_number}
+        ID: ${order.order_id}
+        Customer: ${order.customer_name}
+        Phone: ${order.customer_phone}
+
+        Items:
+        ${order.order_item.map((item) => `
+          • ${item.name} (${ItemSize[item.size as keyof typeof ItemSize]}) x${item.quantity}
+        `).join('')}
+        ---------------------------
+        Thank you!
+    `;
+};

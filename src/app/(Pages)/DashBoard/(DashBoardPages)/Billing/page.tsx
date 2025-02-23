@@ -89,9 +89,9 @@ const BillingPage = () => {
     return <p>Error loading orders</p>
   }
 
-  if(noOrdersFound){
-    return <div className="flex justify-center items-center text-xl mt-10">No orders found</div>
-  }
+  // if(noOrdersFound){
+  //   return <div className="flex justify-center items-center text-xl mt-10">No orders found</div>
+  // }
 
   const filterOrdersByStatus = (orders: orderType[], status: string) => {
     if (!orders || orders.length === 0) return [];
